@@ -1,24 +1,136 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+import Navigation from "./routes-nav/Navigation";
+import Routes from "./routes-nav/Routes";
+import jwt from "jsonwebtoken";
+import VolunteerApi from "./api/api";
+import UserContext from "./auth/UserContext";
+import useLocalStorage from "./hooks/useLocalStorage";
+import LoadingSpinner from "./common/LoadingSpinner";
+export const TOKEN_LOCAL_STORAGE_ID = "volunteer-token";
 
 function App() {
+
+  const [currentUser, setCurrentUser] = useState(null);
+  const [currentCompany, setCurrentCompany] = useState(null);
+  const [token, setToken] = useLocalStorage(TOKEN_LOCAL_STORAGE_ID);
+  const [infoLoaded, setInfoLoaded] = useState(false);
+  const [connectionIds, setConnectionIds] = useState(new Set([]));
+
+  // Load user info from the API 
+  useEffect(function loadUserInfo() {
+    async function getCurrentUser() {
+      if (token) {
+        try {
+          let { username } = jwt.decode(token);
+          let { companyHandle } = jwt.decode(token);
+          VolunteerApi.token = token;
+          let currentUser = await VolunteerApi.getCurrentUser(username);
+          let currentCompany = await VolunteerApi.getCurrentCompany(companyHandle);
+          setCurrentUser(currentUser);
+          setCurrentCompany(currentCompany);
+        } catch (err) {
+          console.error("Problem with the loadUserInfo function", err);
+          setCurrentUser(null);
+        }
+      }
+      setInfoLoaded(true);
+    }
+    setInfoLoaded(false);
+    getCurrentUser();
+  }, [token]);
+
+  // Logout function 
+  function logout() {
+    setCurrentUser(null);
+    setToken(null);
+  }
+
+  // Signup user function 
+  async function signupUser(signupData) {
+    try {
+      let token = await VolunteerApi.signupUser(signupData);
+      setToken(token);
+      return {
+        success: true
+      };
+    } catch (err) {
+      console.error("Problem with the signupUser function", err);
+      return {
+        success: false, err
+      };
+    }
+  }
+
+  // Signup company function 
+  async function signupCompany(signupData) {
+    try {
+      let token = await VolunteerApi.signupCompany(signupData);
+      setToken(token);
+      return {
+        success: true
+      };
+    } catch (err) {
+      console.error("Problem with the signupUser function", err);
+      return {
+        success: false, err
+      };
+    }
+  }
+
+  // Login user function 
+  async function loginUser(loginData) {
+    try {
+      let token = await VolunteerApi.loginUser(loginData);
+      setToken(token);
+      return {
+        success: true
+      };
+    } catch (err) {
+      console.error("Problem with the login function", err);
+      return {
+        success: false, err
+      };
+    }
+  }
+
+  // Login company function 
+  async function loginCompany(loginData) {
+    try {
+      let token = await VolunteerApi.loginCompany(loginData);
+      setToken(token);
+      return {
+        success: true
+      };
+    } catch (err) {
+      console.error("Problem with the login function", err);
+      return {
+        success: false, err
+      };
+    }
+  }
+
+  function hasConnectedToCompany(id) {
+    return connectionIds.has(id);
+  }
+
+  function connectToCompany(id) {
+    if (hasConnectedToCompany(id)) return;
+    VolunteerApi.connectToCompany(currentUser.username, id);
+    setConnectionIds(new Set([...connectionIds, id]));
+  }
+
+  if (!infoLoaded) return <LoadingSpinner />;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <UserContext.Provider value={{ currentUser, setCurrentUser, currentCompany, setCurrentCompany, hasConnectedToCompany, connectToCompany }}>
+        <div>
+          <Navigation logout={logout} />
+          <Routes loginUser={loginUser} signupUser={signupUser} loginCompany={loginCompany} signupCompany={signupCompany} />
+        </div>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 

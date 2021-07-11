@@ -14,12 +14,12 @@ class VolunteerApi {
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
-    
+
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${VolunteerApi.token}` };
     const params = (method === "get")
-        ? data
-        : {};
+      ? data
+      : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -32,16 +32,69 @@ class VolunteerApi {
 
   // Individual API routes
 
-  /** Get details on a company by handle. */
+  /***************************************************company */
 
-  static async getCompany(companyHandle) {
+  // Login company
+  static async loginCompany(data) {
+    let res = await this.request(`auth/login-company`, data, "post");
+    return res.token;
+  }
+
+  // Signup company
+  static async signupCompay(data) {
+    let res = await this.request(`auth/register-company`, data, "post");
+    return res.token;
+  }
+
+  // Get current company 
+  static async getCurrentCompany(companyHandle) {
     let res = await this.request(`companies/${companyHandle}`);
     return res.company;
   }
-  
+
+  // Company profile 
+  static async saveCompanyProfile(companyHandle, data) {
+    let res = await this.request(`companies/${companyHandle}`, data, "patch");
+    return res.user;
+  }
+
+  /************************************************user */
+
+  // Login user
+  static async loginUser(data) {
+    let res = await this.request(`auth/login-user`, data, "post");
+    return res.token;
+  }
+
+  // Signup user
+  static async signupUser(data) {
+    let res = await this.request(`auth/register-user`, data, "post");
+    return res.token;
+  }
+
+  // Get current user 
+  static async getCurrentUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  // User profile 
+  static async saveUserProfile(username, data) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res.user;
+  }
+
+  // Connect to company 
+  static async connectToCompany(username, companyHandle) {
+    await this.request(`users/${username}/${companyHandle}`, {}, "post");
+  }
+
 }
 
 // for now, put token ("testuser" / "password" on class)
 VolunteerApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+
+
+export default VolunteerApi;
