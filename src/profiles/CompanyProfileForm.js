@@ -192,4 +192,4 @@ function CompanyProfileForm() {
   );
 }
 
-export default ProfileForm;
+export default CompanyProfileForm;

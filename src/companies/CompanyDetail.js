@@ -18,7 +18,7 @@ function CompanyDetail() {
       setCompany(await VolunteerApi.getCompany(companyHandle));
     }
     getCompany();
-  }, [handle]);
+  }, [companyHandle]);
 
   if (!company) return <LoadingSpinner />;
 
@@ -36,9 +36,9 @@ function CompanyDetail() {
           <p>{company.shortDescription}</p>
           <p>{company.longDescription}</p>
           <p>{company.lookingFor}</p>
-          <p><a href={company.websiteUrl}></a></p>
-          <p><img src={company.logoUrl} /></p>
-          <p><img src={company.mainImageUrl} /></p>          
+          <p><a href={company.websiteUrl}>VISIT OUR WEBSITE</a></p>
+          <p><img alt="company logo" src={company.logoUrl} /></p>
+          <p><img alt="company banner" src={company.mainImageUrl} /></p>          
         </div>
         <div className="col-lg-2">
 

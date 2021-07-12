@@ -22,9 +22,9 @@ import "./CompanyCard.css";
         <p>{shortDescription}</p>
         <p>{longDescription}</p>
         <p>{lookingFor}</p>
-        <p><a href={websiteUrl}></a></p>
-        <p><img src={logoUrl} /></p>
-        <p><img src={mainImageUrl} /></p>
+        <p><a href={websiteUrl}>VISIT OUR WEBSITE</a></p>
+        <p><img alt="company logo" src={logoUrl} /></p>
+        <p><img alt="company banner" src={mainImageUrl} /></p>
       </div>
     </div>
   );
