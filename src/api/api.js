@@ -46,6 +46,12 @@ class VolunteerApi {
     return res.token;
   }
 
+  // Get all companies 
+  static async getCompanies() {
+    let res = await this.request("companies");
+    return res.companies;
+  }
+
   // Get current company 
   static async getCurrentCompany(companyHandle) {
     let res = await this.request(`companies/${companyHandle}`);
