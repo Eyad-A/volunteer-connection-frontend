@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import UserContext from "../auth/UserContext";
 import VolunteerApi from "../api/api";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -15,6 +16,13 @@ function CompanyDetail() {
 
   const { currentUser, hasConnectedToCompany, connectToCompany } = useContext(UserContext);
   const [connected, setConnected] = useState();
+  const [formErrors, setFormErrors] = useState([]);
+
+  React.useEffect(function updateConnectedStatus() {
+    setConnected(hasConnectedToCompany(companyHandle));
+  }, [companyHandle, hasConnectedToCompany]);
+
+
 
   useEffect(function getCompanyDetail() {
     async function getCompany() {
@@ -23,16 +31,20 @@ function CompanyDetail() {
     getCompany();
   }, [companyHandle]);
 
-  if (!company) return <LoadingSpinner />;
+  if (!company) return <LoadingSpinner />;  
 
-  React.useEffect(function updateConnectedStatus() {
-    setConnected(hasConnectedToCompany(id));
-  }, [id, hasConnectedToCompany]);
-
-  async function handleConnect(evt) {
-    if (hasConnectedToCompany(id)) return;
-    connectToCompany(id);
+  async function handleConnect(evt) {       
+    if (hasConnectedToCompany(companyHandle)) return;
+    connectToCompany(companyHandle);
     setConnected(true);
+
+    let connectUserInDb;
+    try {
+      connectUserInDb = await VolunteerApi.connectToCompany(currentUser.username, companyHandle);
+    } catch (err) {
+      setFormErrors(err);
+      return;
+    }
   }
 
   if (currentUser) {
@@ -45,7 +57,7 @@ function CompanyDetail() {
           <div className="col-lg-10 my-4">
             <h1 className="my-2">{company.companyName}</h1>
             <h4 className="my-3">{company.country}</h4>          
-            <button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right" onClick={handleConnect} disabled={connected}>Connect</button>
+            <button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right" onClick={handleConnect} disabled={connected}> {connected ? "Connected" : "Connect"} </button>
             <p>{company.numEmployees}</p>
             <p>{company.shortDescription}</p>
             <p>{company.longDescription}</p>

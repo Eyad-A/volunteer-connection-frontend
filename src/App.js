@@ -12,10 +12,10 @@ export const TOKEN_LOCAL_STORAGE_ID = "volunteer-token";
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
-  const [currentCompany, setCurrentCompany] = useState(null);
+  // const [currentCompany, setCurrentCompany] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_LOCAL_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
-  const [connectionIds, setConnectionIds] = useState(new Set([]));
+  const [connectionHandles, setConnectionHandles] = useState(new Set([]));
 
   // Load user info from the API 
   useEffect(function loadUserInfo() {
@@ -110,21 +110,21 @@ function App() {
     }
   }
 
-  function hasConnectedToCompany(id) {
-    return connectionIds.has(id);
+  function hasConnectedToCompany(companyHandle) {
+    return connectionHandles.has(companyHandle);
   }
 
-  function connectToCompany(id) {
-    if (hasConnectedToCompany(id)) return;
-    VolunteerApi.connectToCompany(currentUser.username, id);
-    setConnectionIds(new Set([...connectionIds, id]));
+  function connectToCompany(companyHandle) {
+    if (hasConnectedToCompany(companyHandle)) return;
+    VolunteerApi.connectToCompany(currentUser.username, companyHandle);
+    setConnectionHandles(new Set([...connectionHandles, companyHandle]));
   }
 
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ currentUser, setCurrentUser, currentCompany, setCurrentCompany, hasConnectedToCompany, connectToCompany }}>
+      <UserContext.Provider value={{ currentUser, setCurrentUser, hasConnectedToCompany, connectToCompany }}>
         <div>
           <Navigation logout={logout} />
           <Routes loginUser={loginUser} signupUser={signupUser} loginCompany={loginCompany} signupCompany={signupCompany} />
