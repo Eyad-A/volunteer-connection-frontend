@@ -17,14 +17,9 @@ import "./CompanyCard.css";
           </Link>
           {logoUrl && <img src={logoUrl} alt={companyName} className="float-right ml-5" />}
         </h5>
-        <p>{country}</p>
-        <p>{numEmployees}</p>
-        <p>{shortDescription}</p>
-        <p>{longDescription}</p>
-        <p>{lookingFor}</p>
-        <p><a href={websiteUrl}>VISIT OUR WEBSITE</a></p>
-        <p><img alt="company logo" src={logoUrl} /></p>
-        <p><img alt="company banner" src={mainImageUrl} /></p>
+        <p>{country}</p>        
+        <p>{shortDescription}</p>        
+        <p>{lookingFor}</p>                        
       </div>
     </div>
   );

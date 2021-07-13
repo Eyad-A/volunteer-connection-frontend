@@ -29,6 +29,7 @@ function UserSignupForm({ signupUser }) {
       history.push("/companies");
     } else {
       setFormErrors(results.errors);
+      history.push("/");
     }
   }
 

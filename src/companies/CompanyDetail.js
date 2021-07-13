@@ -15,7 +15,7 @@ function CompanyDetail() {
 
   useEffect(function getCompanyDetail() {
     async function getCompany() {
-      setCompany(await VolunteerApi.getCompany(companyHandle));
+      setCompany(await VolunteerApi.getCurrentCompany(companyHandle));
     }
     getCompany();
   }, [companyHandle]);

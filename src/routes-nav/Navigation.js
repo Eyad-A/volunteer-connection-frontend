@@ -33,7 +33,7 @@ function Navigation({ logout }) {
               </NavLink>
             </li>
             <li className="nav-item mr-4">
-              <NavLink className="nav-link" to="/profile">
+              <NavLink className="nav-link" to="/profile-user">
                 Profile
               </NavLink>
             </li>
@@ -64,12 +64,12 @@ function Navigation({ logout }) {
               </NavLink>
             </li>            
             <li className="navbar-item mr-4">
-              <NavLink className="nav-link" to="/login">
+              <NavLink className="nav-link" to="/login-user">
                 Login
               </NavLink>
             </li>
             <li className="navbar-item mr-4">
-              <NavLink className="nav-link" to="/signup">
+              <NavLink className="nav-link" to="/signup-user">
                 Signup
               </NavLink>
             </li>

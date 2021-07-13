@@ -23,12 +23,12 @@ function App() {
       if (token) {
         try {
           let { username } = jwt.decode(token);
-          let { companyHandle } = jwt.decode(token);
+          // let { companyHandle } = jwt.decode(token);
           VolunteerApi.token = token;
           let currentUser = await VolunteerApi.getCurrentUser(username);
-          let currentCompany = await VolunteerApi.getCurrentCompany(companyHandle);
+          // let currentCompany = await VolunteerApi.getCurrentCompany(companyHandle);
           setCurrentUser(currentUser);
-          setCurrentCompany(currentCompany);
+          // setCurrentCompany(currentCompany);
         } catch (err) {
           console.error("Problem with the loadUserInfo function", err);
           setCurrentUser(null);
@@ -71,7 +71,7 @@ function App() {
         success: true
       };
     } catch (err) {
-      console.error("Problem with the signupUser function", err);
+      console.error("Problem with the signupCompany function", err);
       return {
         success: false, err
       };
