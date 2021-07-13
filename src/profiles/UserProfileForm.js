@@ -22,6 +22,8 @@ function UserProfileForm() {
   const [formErrors, setFormErrors] = useState([]);
   const [saveConfirmed, setSaveConfirmed] = useState(false);
 
+  const connections = currentUser.connections;
+
   // Handle form submit 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -142,6 +144,8 @@ function UserProfileForm() {
 
         </div>
       </div>
+
+      <div>{connections}</div>
 
     </div>
   );
