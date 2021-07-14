@@ -15,7 +15,7 @@ function App() {
   // const [currentCompany, setCurrentCompany] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_LOCAL_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
-  const [connectionHandles, setConnectionHandles] = useState(new Set([]));
+  const [connectionHandles, setConnectionHandles] = useState(new Set([]));  
 
   // Load user info from the API 
   useEffect(function loadUserInfo() {
@@ -27,7 +27,8 @@ function App() {
           VolunteerApi.token = token;
           let currentUser = await VolunteerApi.getCurrentUser(username);          
           // let currentCompany = await VolunteerApi.getCurrentCompany(companyHandle);
-          setCurrentUser(currentUser);
+          setCurrentUser(currentUser); 
+        
           // setCurrentCompany(currentCompany);
         } catch (err) {
           console.error("Problem with the loadUserInfo function", err);
@@ -117,7 +118,7 @@ function App() {
   function connectToCompany(companyHandle) {
     if (hasConnectedToCompany(companyHandle)) return;
     VolunteerApi.connectToCompany(currentUser.username, companyHandle);
-    setConnectionHandles(new Set([...connectionHandles, companyHandle]));
+    setConnectionHandles(new Set([...connectionHandles, companyHandle]));    
   }
 
   if (!infoLoaded) return <LoadingSpinner />;

@@ -22,8 +22,6 @@ function CompanyDetail() {
     setConnected(hasConnectedToCompany(companyHandle));
   }, [companyHandle, hasConnectedToCompany]);
 
-
-
   useEffect(function getCompanyDetail() {
     async function getCompany() {
       setCompany(await VolunteerApi.getCurrentCompany(companyHandle));
@@ -44,7 +42,7 @@ function CompanyDetail() {
     } catch (err) {
       setFormErrors(err);
       return;
-    }
+    }    
   }
 
   if (currentUser) {
