@@ -28,8 +28,8 @@ function Navigation({ logout }) {
               </NavLink>
             </li>
             <li className="nav-item mr-4">
-              <NavLink className="nav-link" to="/connections">
-                connections 
+              <NavLink className="nav-link" to="/user-connections">
+                Connections 
               </NavLink>
             </li>
             <li className="nav-item mr-4">

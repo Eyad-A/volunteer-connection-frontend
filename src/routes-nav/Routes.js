@@ -8,6 +8,7 @@ import CompanySignupForm from "../auth/CompanySignupForm";
 import CompanyList from "../companies/CompanyList";
 import CompanyDetail from "../companies/CompanyDetail";
 import UserProfileForm from "../profiles/UserProfileForm";
+import UserConnections from "../connections/UserConnections";
 import CompanyProfileForm from "../profiles/CompanyProfileForm";
 import PrivateRoute from "./PrivateRoute";
 
@@ -46,6 +47,9 @@ function Routes({ loginUser, signupUser, loginCompany, signupCompany }) {
         
         <PrivateRoute exact path="/profile-user">
           <UserProfileForm />
+        </PrivateRoute>
+        <PrivateRoute exact path="/user-connections">
+          <UserConnections />
         </PrivateRoute>
 
         <PrivateRoute exact path="/profile-company">

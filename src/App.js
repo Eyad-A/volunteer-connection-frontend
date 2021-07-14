@@ -25,7 +25,7 @@ function App() {
           let { username } = jwt.decode(token);
           // let { companyHandle } = jwt.decode(token);
           VolunteerApi.token = token;
-          let currentUser = await VolunteerApi.getCurrentUser(username);
+          let currentUser = await VolunteerApi.getCurrentUser(username);          
           // let currentCompany = await VolunteerApi.getCurrentCompany(companyHandle);
           setCurrentUser(currentUser);
           // setCurrentCompany(currentCompany);
@@ -50,7 +50,7 @@ function App() {
   async function signupUser(signupData) {
     try {
       let token = await VolunteerApi.signupUser(signupData);
-      setToken(token);
+      setToken(token); 
       return {
         success: true
       };

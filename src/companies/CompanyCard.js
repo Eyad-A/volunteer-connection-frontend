@@ -17,6 +17,7 @@ import "./CompanyCard.css";
           </Link>
           {logoUrl && <img src={logoUrl} alt={companyName} className="float-right ml-5" />}
         </h5>
+        <p>{companyHandle}</p>
         <p>{country}</p>        
         <p>{shortDescription}</p>        
         <p>{lookingFor}</p>                        

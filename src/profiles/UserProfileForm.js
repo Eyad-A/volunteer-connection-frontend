@@ -143,10 +143,7 @@ function UserProfileForm() {
         <div className="col-lg-2">
 
         </div>
-      </div>
-
-      <div>{connections}</div>
-
+      </div>    
     </div>
   );
 }
