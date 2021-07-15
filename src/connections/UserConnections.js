@@ -6,47 +6,57 @@ import CompanyCard from "../companies/CompanyCard";
 function UserConnections() {
   const { currentUser } = useContext(UserContext);
   const connections = currentUser.connections;
-  const [companies, setCompany] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
-  if (connections) {
-    for (const connection in connections) {
-      useEffect(function getCompanyDetail() {
-        async function getCompany() {
-          setCompany(await VolunteerApi.getCurrentCompany(connection));
-        }
-        getCompany();
-      }, [connection]);
-    }    
-  }
+  // useEffect(() => {
+  //   connections.forEach((c) => VolunteerApi.getCurrentCompany(c).then(comp => setCompanies([...companies, comp])))
+  // }, [connections]);
 
-  return (
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-9">
-          {companies.length
-            ? (
-              <div>
-                {companies.map(company => (
-                  <CompanyCard
-                  key={company.companyHandle}
-                  companyHandle={company.companyHandle}
-                  companyName={company.companyName}
-                  country={company.country}
-                  numEmployees={c.numEmployees}
-                  shortDescription={c.shortDescription}                                   
-                />
-                )
-                   
-                )}
 
-              </div>
-            ) : (
+  useEffect(() => {
+    const comps = connections.map((c) => VolunteerApi.getCurrentCompany(c));
+    Promise.all(comps).then((comps => setCompanies(comps)));
+  }, [connections]);
+
+
+  console.log("***********************");
+  console.log(companies);
+  console.log("***********************");
+
+  if (!companies) {
+    return (
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <div>
               <p>You have no connections</p>
-            )}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    )
+  } else {
+    return (
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <div>
+              {companies.map(c => (
+                <CompanyCard
+                  key={c.companyHandle}
+                  companyHandle={c.companyHandle}
+                  companyName={c.companyName}
+                  country={c.country}
+                  numEmployees={c.numEmployees}
+                  shortDescription={c.shortDescription}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default UserConnections;

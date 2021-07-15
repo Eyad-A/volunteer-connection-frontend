@@ -7,7 +7,7 @@ import "./CompanyCard.css";
  * Shows information about a company 
  */
 
- function CompanyCard({ companyHandle, companyName, country, numEmployees, shortDescription, longDescription, websiteUrl, logoUrl, mainImageUrl, lookingFor }) {
+ function CompanyCard({ companyHandle, companyName, country, numEmployees, shortDescription, logoUrl, lookingFor }) {
   return (
     <div className="CompanyCard card">
       <div className="card-body">
@@ -18,7 +18,8 @@ import "./CompanyCard.css";
           {logoUrl && <img src={logoUrl} alt={companyName} className="float-right ml-5" />}
         </h5>
         <p>{companyHandle}</p>
-        <p>{country}</p>        
+        <p>{country}</p>
+        <p>{numEmployees}</p>
         <p>{shortDescription}</p>        
         <p>{lookingFor}</p>                        
       </div>
