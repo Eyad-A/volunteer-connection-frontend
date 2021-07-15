@@ -8,22 +8,12 @@ function UserConnections() {
   const connections = currentUser.connections;
   const [companies, setCompanies] = useState([]);
 
-  // useEffect(() => {
-  //   connections.forEach((c) => VolunteerApi.getCurrentCompany(c).then(comp => setCompanies([...companies, comp])))
-  // }, [connections]);
-
-
   useEffect(() => {
     const comps = connections.map((c) => VolunteerApi.getCurrentCompany(c));
     Promise.all(comps).then((comps => setCompanies(comps)));
   }, [connections]);
 
-
-  console.log("***********************");
-  console.log(companies);
-  console.log("***********************");
-
-  if (!companies) {
+  if (!companies || companies.length == 0) {  
     return (
       <div class="container">
         <div class="row">
@@ -41,7 +31,7 @@ function UserConnections() {
         <div class="row">
           <div class="col-lg-9">
             <div>
-              {companies.map(c => (
+              {companies && companies.map(c => (
                 <CompanyCard
                   key={c.companyHandle}
                   companyHandle={c.companyHandle}
