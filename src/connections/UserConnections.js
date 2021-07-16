@@ -4,8 +4,8 @@ import VolunteerApi from "../api/api";
 import CompanyCard from "../companies/CompanyCard";
 
 function UserConnections() {
-  const { currentUser } = useContext(UserContext);
-  const connections = currentUser.connections;
+  const { currentUser, connectionHandles } = useContext(UserContext);
+  const connections = currentUser.connections.concat(connectionHandles);
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
@@ -15,9 +15,9 @@ function UserConnections() {
 
   if (!companies || companies.length == 0) {  
     return (
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-9">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-9">
             <div>
               <p>You have no connections</p>
             </div>
@@ -27,9 +27,9 @@ function UserConnections() {
     )
   } else {
     return (
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-9">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-9">
             <div>
               {companies && companies.map(c => (
                 <CompanyCard

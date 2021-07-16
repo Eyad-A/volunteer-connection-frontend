@@ -15,7 +15,7 @@ function App() {
   // const [currentCompany, setCurrentCompany] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_LOCAL_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
-  const [connectionHandles, setConnectionHandles] = useState(new Set([]));  
+  const [connectionHandles, setConnectionHandles] = useState([]);
 
   // Load user info from the API 
   useEffect(function loadUserInfo() {
@@ -112,20 +112,20 @@ function App() {
   }
 
   function hasConnectedToCompany(companyHandle) {
-    return connectionHandles.has(companyHandle);
+    return connectionHandles.includes(companyHandle);
   }
 
   function connectToCompany(companyHandle) {
     if (hasConnectedToCompany(companyHandle)) return;
     VolunteerApi.connectToCompany(currentUser.username, companyHandle);
-    setConnectionHandles(new Set([...connectionHandles, companyHandle]));    
+    setConnectionHandles([...connectionHandles, companyHandle]);    
   }
 
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ currentUser, setCurrentUser, hasConnectedToCompany, connectToCompany }}>
+      <UserContext.Provider value={{ connectionHandles, setConnectionHandles, currentUser, setCurrentUser, hasConnectedToCompany, connectToCompany }}>
         <div>
           <Navigation logout={logout} />
           <Routes loginUser={loginUser} signupUser={signupUser} loginCompany={loginCompany} signupCompany={signupCompany} />
