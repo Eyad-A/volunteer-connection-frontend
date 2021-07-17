@@ -9,11 +9,13 @@ function UserConnections() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     const comps = connections.map((c) => VolunteerApi.getCurrentCompany(c));
-    Promise.all(comps).then((comps => setCompanies(comps)));
-  }, [connections]);
+    Promise.all(comps).then(comps => isMounted && setCompanies(comps));
+    return () => { isMounted = false };        
+  }, [connections]);  
 
-  if (!companies || companies.length == 0) {  
+  if (!companies || companies.length == 0) {
     return (
       <div className="container">
         <div className="row">
