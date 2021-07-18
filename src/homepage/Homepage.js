@@ -21,7 +21,7 @@ function Homepage() {
         <h1 className="mb-4 font-weight-bold">Volunteer Connection</h1>
         <h5 className="lead">Connecting freelancers and nonprofit companies</h5>
         {currentUser ? 
-          <h3>Welcome back, {currentUser.firstName || currentUser.username}</h3>
+          <h3>Welcome back, {currentUser.username || currentUser.companyHandle}</h3>
           : (
             <p>
               <Link className="btn btn-primary btn-lg font-weight-bold mx-2 my-2" to="/login">
