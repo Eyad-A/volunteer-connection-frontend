@@ -21,7 +21,7 @@ function UserLoginForm({ loginUser }) {
     evt.preventDefault();
     let results = await loginUser(formData);
     if (results.success) {
-      history.push("/companies");
+      history.push("/");
     } else {
       setFormErrors(results.errors);
     }

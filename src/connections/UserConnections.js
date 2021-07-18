@@ -39,7 +39,7 @@ function UserConnections() {
                   key={c.companyHandle}
                   companyHandle={c.companyHandle}
                   companyName={c.companyName}
-                  country={c.country}
+                  state={c.state}
                   numEmployees={c.numEmployees}
                   shortDescription={c.shortDescription}
                 />

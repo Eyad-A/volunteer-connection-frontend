@@ -26,7 +26,7 @@ function UserSignupForm({ signupUser }) {
     evt.preventDefault();
     let results = await signupUser(formData);
     if (results.success) {
-      history.push("/companies");
+      history.push("/");
     } else {
       setFormErrors(results.errors);
       history.push("/");

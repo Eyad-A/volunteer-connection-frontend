@@ -13,7 +13,7 @@ function CompanyProfileForm() {
   const { currentCompany, setCurrentCompany } = useContext(UserContext);
   const [formData, setFormData] = useState({
     companyName: currentCompany.companyName,
-    country: currentCompany.country,
+    state: currentCompany.state,
     numEmployees: currentCompany.numEmployees,
     shortDescription: currentCompany.shortDescription,
     longDescription: currentCompany.longDescription,
@@ -32,7 +32,7 @@ function CompanyProfileForm() {
 
     let profileData = {
       companyName: formData.companyName,
-      country: formData.country,
+      state: formData.state,
       numEmployees: formData.numEmployees,
       shortDescription: formData.shortDescription,
       longDescription: formData.longDescription,
@@ -85,11 +85,11 @@ function CompanyProfileForm() {
                 <p>{formData.companyHandle}</p>
               </div>
               <div className="col-lg-12 my-2">
-                <label>Country</label>
+                <label>state</label>
                 <input
-                  name="country"
+                  name="state"
                   className="form-control"                  
-                  value={formData.country}
+                  value={formData.state}
                   onChange={handleChange}
                 />
               </div>

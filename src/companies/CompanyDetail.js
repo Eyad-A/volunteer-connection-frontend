@@ -54,7 +54,7 @@ function CompanyDetail() {
           </div>
           <div className="col-lg-10 my-4">
             <h1 className="my-2">{company.companyName}</h1>
-            <h4 className="my-3">{company.country}</h4>          
+            <h4 className="my-3">{company.state}</h4>          
             <button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right" onClick={handleConnect} disabled={connected}> {connected ? "Connected" : "Connect"} </button>
             <p>{company.numEmployees}</p>
             <p>{company.shortDescription}</p>
@@ -79,7 +79,7 @@ function CompanyDetail() {
           </div>
           <div className="col-lg-10 my-4">
             <h1 className="my-2">{company.companyName}</h1>
-            <h4 className="my-3">{company.country}</h4>          
+            <h4 className="my-3">{company.state}</h4>          
             <a href="/login-user"><button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right">Login to Connect</button></a>
             <p>{company.numEmployees}</p>
             <p>{company.shortDescription}</p>

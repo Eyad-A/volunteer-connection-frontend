@@ -14,7 +14,7 @@ function CompanySignupForm({ signupCompany }) {
     companyHandle: "",
     password: "",
     companyName: "",
-    country: "",
+    state: "",
     numEmployees: "",
     shortDescription: "",
     longDescription: "",
@@ -31,7 +31,7 @@ function CompanySignupForm({ signupCompany }) {
     evt.preventDefault();
     let results = await signupCompany(formData);
     if (results.success) {
-      history.push("/companies");
+      history.push("/");
     } else {
       setFormErrors(results.errors);
     }
@@ -83,10 +83,10 @@ function CompanySignupForm({ signupCompany }) {
               </div>
               <div className="col-lg-9 my-2">
                 <input
-                  name="country"
+                  name="state"
                   className="form-control"
-                  placeholder="Country"
-                  value={formData.country}
+                  placeholder="state"
+                  value={formData.state}
                   onChange={handleChange}
                 />
               </div>
