@@ -5,15 +5,16 @@ import CompanyCard from "../companies/CompanyCard";
 
 function UserConnections() {
   const { currentUser, connectionHandles } = useContext(UserContext);
-  const connections = currentUser.connections.concat(connectionHandles);
+  
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
+    const connections = currentUser.connections.concat(connectionHandles);
     const comps = connections.map((c) => VolunteerApi.getCurrentCompany(c));
     Promise.all(comps).then(comps => isMounted && setCompanies(comps));
     return () => { isMounted = false };        
-  }, [connections]);  
+  }, [currentUser, connectionHandles]);  
 
   if (!companies || companies.length == 0) {
     return (
