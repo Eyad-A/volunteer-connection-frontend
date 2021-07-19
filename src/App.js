@@ -12,7 +12,7 @@ export const TOKEN_LOCAL_STORAGE_ID = "volunteer-token";
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
-  // const [currentCompany, setCurrentCompany] = useState(null);
+  const [currentCompany, setCurrentCompany] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_LOCAL_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [connectionHandles, setConnectionHandles] = useState([]);
@@ -23,16 +23,24 @@ function App() {
       if (token) {
         try {
           let { username } = jwt.decode(token);
-          // let { companyHandle } = jwt.decode(token);
+          let { companyHandle } = jwt.decode(token);
           VolunteerApi.token = token;
-          let currentUser = await VolunteerApi.getCurrentUser(username);          
-          // let currentCompany = await VolunteerApi.getCurrentCompany(companyHandle);
-          setCurrentUser(currentUser); 
-        
-          // setCurrentCompany(currentCompany);
+
+          if (username) {
+            let currentUser = await VolunteerApi.getCurrentUser(username);
+            setCurrentUser(currentUser);
+          }
+
+          if (companyHandle) {
+            let currentCompany = await VolunteerApi.getCurrentCompany(companyHandle);
+            setCurrentCompany(currentCompany);
+          }
+
+          
         } catch (err) {
           console.error("Problem with the loadUserInfo function", err);
           setCurrentUser(null);
+          // setCurrentCompany(null);
         }
       }
       setInfoLoaded(true);
@@ -44,6 +52,7 @@ function App() {
   // Logout function 
   function logout() {
     setCurrentUser(null);
+    setCurrentCompany(null);
     setToken(null);
   }
 
@@ -51,7 +60,7 @@ function App() {
   async function signupUser(signupData) {
     try {
       let token = await VolunteerApi.signupUser(signupData);
-      setToken(token); 
+      setToken(token);
       return {
         success: true
       };
@@ -118,14 +127,14 @@ function App() {
   function connectToCompany(companyHandle) {
     if (hasConnectedToCompany(companyHandle)) return;
     VolunteerApi.connectToCompany(currentUser.username, companyHandle);
-    setConnectionHandles([...connectionHandles, companyHandle]);    
+    setConnectionHandles([...connectionHandles, companyHandle]);
   }
 
   if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ connectionHandles, setConnectionHandles, currentUser, setCurrentUser, hasConnectedToCompany, connectToCompany }}>
+      <UserContext.Provider value={{ connectionHandles, setConnectionHandles, currentUser, setCurrentUser, currentCompany, setCurrentCompany, hasConnectedToCompany, connectToCompany }}>
         <div>
           <Navigation logout={logout} />
           <Routes loginUser={loginUser} signupUser={signupUser} loginCompany={loginCompany} signupCompany={signupCompany} />

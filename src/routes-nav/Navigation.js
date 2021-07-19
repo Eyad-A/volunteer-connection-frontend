@@ -44,9 +44,7 @@ function Navigation({ logout }) {
             </li>
           </ul>
         </div>
-
       </div>
-
     );
   }
 
@@ -65,17 +63,26 @@ function Navigation({ logout }) {
             </li>            
             <li className="navbar-item mr-4">
               <NavLink className="nav-link" to="/login-user">
-                Login
+                User Login
+              </NavLink>
+            </li>
+            <li className="navbar-item mr-4">
+              <NavLink className="nav-link" to="/login-company">
+                Company Login
               </NavLink>
             </li>
             <li className="navbar-item mr-4">
               <NavLink className="nav-link" to="/signup-user">
-                Signup
+                User Signup
+              </NavLink>
+            </li>
+            <li className="navbar-item mr-4">
+              <NavLink className="nav-link" to="/signup-company">
+                Company Signup
               </NavLink>
             </li>
           </ul>
         </div>
-
       </div>
     );
   }
