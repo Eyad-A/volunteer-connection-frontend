@@ -23,6 +23,7 @@ function UserConnections() {
           <div className="col-lg-9">
             <div>
               <p>You have no connections</p>
+              <p><a href="/companies">View current companies</a></p>
             </div>
           </div>
         </div>
