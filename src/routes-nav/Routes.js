@@ -47,13 +47,18 @@ function Routes({ loginUser, signupUser, loginCompany, signupCompany }) {
         
         <PrivateRoute exact path="/profile-user">
           <UserProfileForm />
+        </PrivateRoute>        
+
+        <PrivateRoute exact path="/profile-company">
+          <CompanyProfileForm />
         </PrivateRoute>
+
         <PrivateRoute exact path="/user-connections">
           <UserConnections />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/profile-company">
-          <CompanyProfileForm />
+        <PrivateRoute exact path="/company-connections">
+          <CompanyConnections />
         </PrivateRoute>
 
         <Redirect to="/" />

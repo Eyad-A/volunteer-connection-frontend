@@ -9,9 +9,9 @@ import UserContext from "../auth/UserContext";
  */
 
 function PrivateRoute({ exact, path, children }) {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, currentCompany } = useContext(UserContext);
 
-  if (!currentUser) {
+  if (!currentUser && !currentCompany) {
     return <Redirect to="/login" />
   }
 
