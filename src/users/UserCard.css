@@ -1,0 +1,12 @@
+.UserCard {
+    max-height: 250px;
+    margin-bottom: 15px;
+    color: inherit;
+    border-radius: 0;
+    border: none;
+    box-shadow: 0 1px 3px rgba(29, 29, 29, 0.096), 0 1px 3px rgba(0, 0, 0, 0.28);
+}
+
+.CompanyCard:hover {
+    text-decoration: none;
+}

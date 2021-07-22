@@ -9,6 +9,7 @@ import CompanyList from "../companies/CompanyList";
 import CompanyDetail from "../companies/CompanyDetail";
 import UserProfileForm from "../profiles/UserProfileForm";
 import UserConnections from "../connections/UserConnections";
+import CompanyConnections from "../connections/CompanyConnections";
 import CompanyProfileForm from "../profiles/CompanyProfileForm";
 import PrivateRoute from "./PrivateRoute";
 
