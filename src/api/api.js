@@ -41,7 +41,7 @@ class VolunteerApi {
   }
 
   // Signup company
-  static async signupCompay(data) {
+  static async signupCompany(data) {
     let res = await this.request(`auth/register-company`, data, "post");
     return res.token;
   }

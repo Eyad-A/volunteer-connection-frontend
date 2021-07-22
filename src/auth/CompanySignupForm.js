@@ -15,7 +15,7 @@ function CompanySignupForm({ signupCompany }) {
     password: "",
     companyName: "",
     state: "",
-    numEmployees: "",
+    numEmployees: 0,
     shortDescription: "",
     longDescription: "",
     websiteUrl: "",
@@ -38,10 +38,20 @@ function CompanySignupForm({ signupCompany }) {
   }
 
   // Handle change
+  // function handleChange(evt) {
+  //   const { name, value } = evt.target;
+  //   setFormData(data => ({ ...data, [name]: value }));
+  // }
+
   function handleChange(evt) {
-    const { name, value } = evt.target;
-    setFormData(data => ({ ...data, [name]: value }));
+    const { name, value, type } = evt.target;
+    setFormData(data => ({ ...data, [name]: type === 'number' ? parseInt(value) : value }));
   }
+
+  // this.setState({
+  //   [e.target.name]: e.target.type === 'number' ? parseInt(e.target.value) : e.target.value
+  // });
+  
 
   return (
     <div className="container my-5">
@@ -93,6 +103,7 @@ function CompanySignupForm({ signupCompany }) {
               <div className="col-lg-9 my-2">
                 <input
                   name="numEmployees"
+                  type="number"
                   className="form-control"
                   placeholder="Number of employees"                  
                   value={formData.numEmployees}
