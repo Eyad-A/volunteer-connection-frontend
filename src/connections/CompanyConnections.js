@@ -4,7 +4,7 @@ import VolunteerApi from "../api/api";
 import UserCard from "../users/UserCard";
 
 function CompanyConnections() {
-  const { currentUser, currentCompany } = useContext(UserContext);
+  const { currentCompany } = useContext(UserContext);
   
   const [users, setUsers] = useState([]);
 

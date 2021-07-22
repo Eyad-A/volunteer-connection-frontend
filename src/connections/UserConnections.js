@@ -16,7 +16,7 @@ function UserConnections() {
     return () => { isMounted = false };        
   }, [currentUser, connectionHandles]);  
 
-  if (!companies || companies.length == 0) {
+  if (!companies || companies.length === 0) {
     return (
       <div className="container">
         <div className="row">
