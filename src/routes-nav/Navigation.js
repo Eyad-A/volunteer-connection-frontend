@@ -12,9 +12,9 @@ import "./Navigation.css"
 
 function Navigation({ logout }) {
 
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, currentCompany } = useContext(UserContext);
 
-  function loggedInNav() {
+  function loggedInUserNav() {
     return (
       <div className="container-fluid">
         <Link className="navbar-brand link-dark" to="/">
@@ -34,6 +34,35 @@ function Navigation({ logout }) {
             </li>
             <li className="nav-item mr-4">
               <NavLink className="nav-link" to="/profile-user">
+                Profile
+              </NavLink>
+            </li>
+            <li className="nav-item mr-4">
+              <NavLink className="nav-link" to="/" onClick={logout}>
+                Logout
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+    );
+  }
+
+  function loggedInCompanyNav() {
+    return (
+      <div className="container-fluid">
+        <Link className="navbar-brand link-dark" to="/">
+          Volunteer Connection
+        </Link>
+        <div className="justify-content-end">
+          <ul className="navbar-nav ml-auto justify-content-end">            
+            <li className="nav-item mr-4">
+              <NavLink className="nav-link" to="/company-connections">
+                Connections 
+              </NavLink>
+            </li>
+            <li className="nav-item mr-4">
+              <NavLink className="nav-link" to="/profile-company">
                 Profile
               </NavLink>
             </li>
@@ -89,7 +118,7 @@ function Navigation({ logout }) {
 
   return (
     <nav className="Navigation navbar navbar-expand-md">
-      {currentUser ? loggedInNav() : loggedOutNav()}
+      {currentUser ? loggedInUserNav() : currentCompany ? loggedInCompanyNav() : loggedOutNav()} 
     </nav>
   );
 }

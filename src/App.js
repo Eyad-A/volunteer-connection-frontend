@@ -36,11 +36,11 @@ function App() {
             setCurrentCompany(currentCompany);
           }
 
-          
+
         } catch (err) {
           console.error("Problem with the loadUserInfo function", err);
           setCurrentUser(null);
-          // setCurrentCompany(null);
+          setCurrentCompany(null);
         }
       }
       setInfoLoaded(true);
