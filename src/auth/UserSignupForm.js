@@ -5,7 +5,7 @@ import Alert from "../common/Alert";
 /**
  * User signup form 
  * Shows a sign up form
- * Routed at /signup  
+ * Routed at /signup-user 
  */
 
 function UserSignupForm({ signupUser }) {

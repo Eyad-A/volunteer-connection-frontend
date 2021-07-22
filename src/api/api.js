@@ -61,7 +61,7 @@ class VolunteerApi {
   // Company profile 
   static async saveCompanyProfile(companyHandle, data) {
     let res = await this.request(`companies/${companyHandle}`, data, "patch");
-    return res.user;
+    return res.company;
   }
 
   /************************************************user */

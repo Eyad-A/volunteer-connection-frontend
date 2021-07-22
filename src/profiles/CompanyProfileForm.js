@@ -21,6 +21,7 @@ function CompanyProfileForm() {
     logoUrl: currentCompany.logoUrl,
     mainImageUrl: currentCompany.mainImageUrl,
     lookingFor: currentCompany.lookingFor,
+    companyHandle: currentCompany.companyHandle,
     password: "",
   });
   const [formErrors, setFormErrors] = useState([]);

@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
 
 /**
- * User signup form 
+ * Company signup form 
  * Shows a sign up form
- * Routed at /signup  
+ * Routed at /signup-company 
  */
 
 function CompanySignupForm({ signupCompany }) {
