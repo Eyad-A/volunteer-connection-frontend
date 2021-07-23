@@ -18,9 +18,21 @@ function CompanyDetail() {
   const [connected, setConnected] = useState();
   const [formErrors, setFormErrors] = useState([]);
 
+  console.log(currentUser.connections);
+
+
+  // React.useEffect(function updateConnectedStatus() {
+  //   setConnected(hasConnectedToCompany(companyHandle));
+  // }, [companyHandle, hasConnectedToCompany]);
+
+  console.log(connected);
+
   React.useEffect(function updateConnectedStatus() {
-    setConnected(hasConnectedToCompany(companyHandle));
-  }, [companyHandle, hasConnectedToCompany]);
+    if (currentUser.connections.includes(companyHandle)) {
+      setConnected(true);
+    }
+  });
+
 
   useEffect(function getCompanyDetail() {
     async function getCompany() {
@@ -29,9 +41,9 @@ function CompanyDetail() {
     getCompany();
   }, [companyHandle]);
 
-  if (!company) return <LoadingSpinner />;  
+  if (!company) return <LoadingSpinner />;
 
-  async function handleConnect(evt) {       
+  async function handleConnect(evt) {
     if (hasConnectedToCompany(companyHandle)) return;
     connectToCompany(companyHandle);
     setConnected(true);
@@ -42,7 +54,7 @@ function CompanyDetail() {
     } catch (err) {
       setFormErrors(err);
       return;
-    }    
+    }
   }
 
   if (currentUser) {
@@ -50,11 +62,11 @@ function CompanyDetail() {
       <div className="container">
         <div className="row">
           <div className="col-lg-2">
-  
+
           </div>
           <div className="col-lg-10 my-4">
             <h1 className="my-2">{company.companyName}</h1>
-            <h4 className="my-3">{company.state}</h4>          
+            <h4 className="my-3">{company.state}</h4>
             <button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right" onClick={handleConnect} disabled={connected}> {connected ? "Connected" : "Connect"} </button>
             <p>{company.numEmployees}</p>
             <p>{company.shortDescription}</p>
@@ -65,21 +77,21 @@ function CompanyDetail() {
             <p><img alt="company banner" src={company.mainImageUrl} /></p>
           </div>
           <div className="col-lg-2">
-  
+
           </div>
         </div>
       </div>
-    );    
+    );
   } else {
     return (
       <div className="container">
         <div className="row">
           <div className="col-lg-2">
-  
+
           </div>
           <div className="col-lg-10 my-4">
             <h1 className="my-2">{company.companyName}</h1>
-            <h4 className="my-3">{company.state}</h4>          
+            <h4 className="my-3">{company.state}</h4>
             <a href="/login-user"><button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right">Login to Connect</button></a>
             <p>{company.numEmployees}</p>
             <p>{company.shortDescription}</p>
@@ -90,12 +102,12 @@ function CompanyDetail() {
             <p><img alt="company banner" src={company.mainImageUrl} /></p>
           </div>
           <div className="col-lg-2">
-  
+
           </div>
         </div>
       </div>
     );
-  }  
+  }
 }
 
 export default CompanyDetail;
