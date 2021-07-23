@@ -86,7 +86,16 @@ function CompanyProfileForm() {
                 <p>{formData.companyHandle}</p>
               </div>
               <div className="col-lg-12 my-2">
-                <label>state</label>
+                <label>Company Name</label>
+                <input
+                  name="companyName"
+                  className="form-control"                  
+                  value={formData.companyName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-lg-12 my-2">
+                <label>State</label>
                 <input
                   name="state"
                   className="form-control"                  
