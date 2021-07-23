@@ -16,6 +16,13 @@ function UserLoginForm({ loginUser }) {
   const [formErrors, setFormErrors] = useState([]);
   const history = useHistory();
 
+  console.debug(
+    "UserLoginForm",
+    "login=", typeof loginUser,
+    "formData=", formData,
+    "formErrors", formErrors,
+);
+
   // Handle form submission 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -23,7 +30,7 @@ function UserLoginForm({ loginUser }) {
     if (results.success) {
       history.push("/");
     } else {
-      setFormErrors(results.errors);
+      setFormErrors(results.err);
     }
   }
 
@@ -66,7 +73,7 @@ function UserLoginForm({ loginUser }) {
               </div>
 
               {formErrors.length
-                ? <Alert type="danger" message={formErrors} />
+                ? <Alert type="danger" messages={formErrors} />
                 : null
               }
 
