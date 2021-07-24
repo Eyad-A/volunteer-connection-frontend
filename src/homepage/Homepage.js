@@ -15,10 +15,10 @@ function Homepage() {
 
   return (
     <div>
-      <section class="bgimage">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hero-text">
+      <section className="bgimage">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 hero-text">
               <h1>Volunteer Connection</h1>
               <h4>Connecting freelancers and nonprofit companies</h4>
               {currentUser ?

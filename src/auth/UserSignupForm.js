@@ -28,7 +28,7 @@ function UserSignupForm({ signupUser }) {
     if (results.success) {
       history.push("/");
     } else {
-      setFormErrors(results.errors);
+      setFormErrors(results.err);
       history.push("/");
     }
   }

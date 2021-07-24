@@ -15,13 +15,12 @@ import "./CompanyCard.css";
           <Link to={`/companies/${companyHandle}`}>
           {companyName} 
           </Link>
-          {logoUrl && <img src={logoUrl} alt={companyName} className="float-right ml-5" />}
-        </h5>
-        <p>{companyHandle}</p>
-        <p>{state}</p>
-        <p>{numEmployees}</p>
+          {logoUrl && <img src={logoUrl} alt={companyName} className="float-right mx-2 ml-5" />}
+        </h5>        
+        <p>{state} | {numEmployees} employees</p>
+       
         <p>{shortDescription}</p>        
-        <p>{lookingFor}</p>                        
+        <p>Looking for: {lookingFor}</p>                        
       </div>
     </div>
   );

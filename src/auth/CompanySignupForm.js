@@ -33,7 +33,7 @@ function CompanySignupForm({ signupCompany }) {
     if (results.success) {
       history.push("/");
     } else {
-      setFormErrors(results.errors);
+      setFormErrors(results.err);
     }
   }
 
@@ -67,7 +67,7 @@ function CompanySignupForm({ signupCompany }) {
                 <input
                   name="companyHandle"
                   className="form-control"
-                  placeholder="Company Handle"
+                  placeholder="Company Handle (four letter abbreviation of company name)"
                   value={formData.companyHandle}
                   onChange={handleChange}
                 />
@@ -120,7 +120,8 @@ function CompanySignupForm({ signupCompany }) {
                 />
               </div>
               <div className="col-lg-9 my-2">
-                <input
+                <textarea
+                  rows="4"
                   name="longDescription"
                   className="form-control"
                   placeholder="Long Description"
@@ -141,7 +142,7 @@ function CompanySignupForm({ signupCompany }) {
                 <input
                   name="logoUrl"
                   className="form-control"
-                  placeholder="Logo URL"
+                  placeholder="Logo URL (Optional)"
                   value={formData.logoUrl}
                   onChange={handleChange}
                 />
@@ -150,7 +151,7 @@ function CompanySignupForm({ signupCompany }) {
                 <input
                   name="mainImageUrl"
                   className="form-control"
-                  placeholder="Main image URL"
+                  placeholder="Main image URL (Optional)"
                   value={formData.mainImageUrl}
                   onChange={handleChange}
                 />
