@@ -91,11 +91,11 @@ function Navigation({ logout }) {
                 Companies
               </NavLink>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Login
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
                   <NavLink className="nav-link" to="/login-user">
                     User Login
@@ -108,11 +108,11 @@ function Navigation({ logout }) {
                 </li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Signup
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
                   <NavLink className="nav-link" to="/signup-user">
                     Signup as a User
@@ -132,7 +132,7 @@ function Navigation({ logout }) {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light Navigation">
+    <nav className="navbar navbar-expand-lg navbar-dark Navigation">
       {currentUser ? loggedInUserNav() : currentCompany ? loggedInCompanyNav() : loggedOutNav()}
     </nav>
   );

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import "./Homepage.css";
-import hero from "../teamwork.jpg";
 
 /**
  * Home page
@@ -15,27 +14,32 @@ function Homepage() {
   const { currentUser, currentCompany } = useContext(UserContext);
 
   return (
-    <div className="homepage">
-      <div className="container text-center">
-        <img src={hero} alt="Man applying for jobs" className="heroimage" />
-        <h1 className="mb-4 font-weight-bold">Volunteer Connection</h1>
-        <h5 className="lead">Connecting freelancers and nonprofit companies</h5>
-        {currentUser ? 
-          <h3>Welcome back, {currentUser.username }</h3>
-          : currentCompany ? 
-          <h3>Welcome back, {currentCompany.companyHandle }</h3>
-          :(
-            <p>
-              <Link className="btn btn-primary btn-lg font-weight-bold mx-2 my-2" to="/login">
-                Login 
-              </Link>
-              <Link className="btn btn-primary btn-lg font-weight-bold mx-2 my-2" to="/signup">
-                Signup 
-              </Link>
-            </p>
-          )
-        }
-      </div>
+    <div>
+      <section class="bgimage">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hero-text">
+              <h1>Volunteer Connection</h1>
+              <h4>Connecting freelancers and nonprofit companies</h4>
+              {currentUser ?
+                <h4>Welcome back, {currentUser.username}</h4>
+                : currentCompany ?
+                  <h4>Welcome back, {currentCompany.companyHandle}</h4>
+                  : (
+                    <p>
+                      <Link className="btn btn-warning btn-lg font-weight-bold mx-2 my-2" to="/signup-company">
+                        For nonprofits
+                      </Link>
+                      <Link className="btn btn-warning btn-lg font-weight-bold mx-2 my-2" to="/signup-user">
+                        For freelancers
+                      </Link>
+                    </p>
+                  )
+              }
+            </div>
+          </div>
+        </div>
+      </section>      
     </div>
   );
 }
