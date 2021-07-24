@@ -18,20 +18,17 @@ function CompanyDetail() {
   const [connected, setConnected] = useState();
   const [formErrors, setFormErrors] = useState([]);
 
-  console.log(currentUser.connections);
+
+  React.useEffect(function updateConnectedStatus() {
+    setConnected(hasConnectedToCompany(companyHandle));
+  }, [companyHandle, hasConnectedToCompany]);
 
 
   // React.useEffect(function updateConnectedStatus() {
-  //   setConnected(hasConnectedToCompany(companyHandle));
-  // }, [companyHandle, hasConnectedToCompany]);
-
-  console.log(connected);
-
-  React.useEffect(function updateConnectedStatus() {
-    if (currentUser.connections.includes(companyHandle)) {
-      setConnected(true);
-    }
-  });
+  //   if (currentUser.connections.includes(companyHandle)) {
+  //     setConnected(true);
+  //   }
+  // }, [currentUser.connections, companyHandle]);
 
 
   useEffect(function getCompanyDetail() {
