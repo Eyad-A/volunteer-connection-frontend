@@ -3,6 +3,7 @@ import UserContext from "../auth/UserContext";
 import VolunteerApi from "../api/api";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner";
+import "./CompanyDetail.css";
 
 /**
  * Company Detail 
@@ -58,22 +59,23 @@ function CompanyDetail() {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-lg-2">
+          <div className="col-lg-1">
 
           </div>
           <div className="col-lg-10 my-4">
-            <h1 className="my-2">{company.companyName}</h1>
-            <h4 className="my-3">{company.state}</h4>
-            <button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right" onClick={handleConnect} disabled={connected}> {connected ? "Connected" : "Connect"} </button>
-            <p>{company.numEmployees}</p>
+            {company.mainImageUrl && <img src={company.mainImageUrl} alt={company.companyName} className="banner" />}
+            <h1 className="mt-4">{company.companyName} {company.logoUrl && <img src={company.logoUrl} alt={company.companyName} className="mx-2" />}</h1>
+            
+            <p>
+              <button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right" onClick={handleConnect} disabled={connected}> {connected ? "Connected" : "Connect"} </button>
+              <a target="_blank" href={company.websiteUrl}><button className="btn btn-warning my-2 mx-2 font-weight-bold text-uppercase">Visit our website</button></a>
+            </p>
+            <h4 className="my-3">{company.state} | {company.numEmployees} employees</h4>
+            <p>Looking for: {company.lookingFor}</p>
             <p>{company.shortDescription}</p>
             <p>{company.longDescription}</p>
-            <p>{company.lookingFor}</p>
-            <p><a href={company.websiteUrl}>VISIT OUR WEBSITE</a></p>
-            <p><img alt="company logo" src={company.logoUrl} /></p>
-            <p><img alt="company banner" src={company.mainImageUrl} /></p>
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-1">
 
           </div>
         </div>
@@ -83,22 +85,22 @@ function CompanyDetail() {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-lg-2">
+          <div className="col-lg-1">
 
           </div>
           <div className="col-lg-10 my-4">
-            <h1 className="my-2">{company.companyName}</h1>
-            <h4 className="my-3">{company.state}</h4>
-            <a href="/login-user"><button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right">Login to Connect</button></a>
-            <p>{company.numEmployees}</p>
+            {company.mainImageUrl && <img src={company.mainImageUrl} alt={company.companyName} className="banner" />}
+            <h1 className="mt-4">{company.companyName} {company.logoUrl && <img src={company.logoUrl} alt={company.companyName} className="mx-2" />}</h1>
+            <p>
+              <a href="/login-user"><button className="btn btn-warning my-2 me-2 font-weight-bold text-uppercase float-right">Login to Connect</button></a>
+              <a target="_blank" href={company.websiteUrl}><button className="btn btn-warning my-2 mx-2 font-weight-bold text-uppercase">Visit our website</button></a>
+            </p>
+            <h4 className="my-3">{company.state} | {company.numEmployees} employees</h4>
+            <p>Looking for: {company.lookingFor}</p>
             <p>{company.shortDescription}</p>
             <p>{company.longDescription}</p>
-            <p>{company.lookingFor}</p>
-            <p><a href={company.websiteUrl}>VISIT OUR WEBSITE</a></p>
-            <p><img alt="company logo" src={company.logoUrl} /></p>
-            <p><img alt="company banner" src={company.mainImageUrl} /></p>
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-1">
 
           </div>
         </div>
@@ -108,3 +110,4 @@ function CompanyDetail() {
 }
 
 export default CompanyDetail;
+
