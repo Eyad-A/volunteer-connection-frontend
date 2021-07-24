@@ -23,7 +23,7 @@ function CompanyLoginForm({ loginCompany }) {
     if (results.success) {
       history.push("/");
     } else {
-      setFormErrors(results.errors);
+      setFormErrors(results.err);
     }
   }
 
