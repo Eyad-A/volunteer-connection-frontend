@@ -19,8 +19,8 @@ function Homepage() {
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 hero-text">
-              <h1>Volunteer Connection</h1>
-              <h4>Connecting freelancers and nonprofit companies</h4>
+              <h1 className="hero-shadow">Volunteer Connection</h1>
+              <h4 className="hero-shadow">Connecting freelancers and nonprofit companies</h4>
               {currentUser ?
                 <h4>Welcome back, {currentUser.username}</h4>
                 : currentCompany ?

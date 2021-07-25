@@ -24,6 +24,11 @@ function Navigation({ logout }) {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav mb-2 mb-lg-0 justify-content-end">
+          <li className="nav-item">
+              <NavLink className="nav-link" to="/companies">
+                Companies
+              </NavLink>
+            </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/user-connections">
                 Connections

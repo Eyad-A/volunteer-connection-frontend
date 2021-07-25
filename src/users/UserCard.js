@@ -13,8 +13,7 @@ import "./UserCard.css";
         <h5>          
           {username}                     
         </h5>
-        <p>{firstName}</p>
-        <p>{lastName}</p>
+        <p>{firstName} {lastName}</p>        
         <p>{skill}</p>                              
       </div>
     </div>
