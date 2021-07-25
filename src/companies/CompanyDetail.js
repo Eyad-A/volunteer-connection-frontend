@@ -68,7 +68,7 @@ function CompanyDetail() {
             
             <p>
               <button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right" onClick={handleConnect} disabled={connected}> {connected ? "Connected" : "Connect"} </button>
-              <a target="_blank" href={company.websiteUrl}><button className="btn btn-warning my-2 mx-2 font-weight-bold text-uppercase">Visit our website</button></a>
+              <a target="_blank" rel="noreferrer" href={company.websiteUrl}><button className="btn btn-warning my-2 mx-2 font-weight-bold text-uppercase">Visit our website</button></a>
             </p>
             <h4 className="my-3">{company.state} | {company.numEmployees} employees</h4>
             <p>Looking for: {company.lookingFor}</p>
@@ -93,7 +93,7 @@ function CompanyDetail() {
             <h1 className="mt-4">{company.companyName} {company.logoUrl && <img src={company.logoUrl} alt={company.companyName} className="mx-2" />}</h1>
             <p>
               <a href="/login-user"><button className="btn btn-warning my-2 me-2 font-weight-bold text-uppercase float-right">Login to Connect</button></a>
-              <a target="_blank" href={company.websiteUrl}><button className="btn btn-warning my-2 mx-2 font-weight-bold text-uppercase">Visit our website</button></a>
+              <a target="_blank" rel="noreferrer" href={company.websiteUrl}><button className="btn btn-warning my-2 mx-2 font-weight-bold text-uppercase">Visit our website</button></a>
             </p>
             <h4 className="my-3">{company.state} | {company.numEmployees} employees</h4>
             <p>Looking for: {company.lookingFor}</p>

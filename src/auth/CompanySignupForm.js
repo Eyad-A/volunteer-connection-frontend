@@ -100,7 +100,7 @@ function CompanySignupForm({ signupCompany }) {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-lg-9 my-2">
+              <div className="col-lg-9 my-2">                
                 <input
                   name="numEmployees"
                   type="number"
