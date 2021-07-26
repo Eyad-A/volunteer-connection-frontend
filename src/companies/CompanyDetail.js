@@ -25,6 +25,15 @@ function CompanyDetail() {
   }, [companyHandle, hasConnectedToCompany]);
 
 
+  useEffect(() => {
+    if (currentUser) {
+      if (currentUser.connections.includes(companyHandle)) {
+        setConnected(true);
+      }
+    }
+  }, [companyHandle]);
+
+
   // React.useEffect(function updateConnectedStatus() {
   //   if (currentUser.connections.includes(companyHandle)) {
   //     setConnected(true);
@@ -64,8 +73,8 @@ function CompanyDetail() {
           </div>
           <div className="col-lg-10 my-4">
             {company.mainImageUrl && <img src={company.mainImageUrl} alt={company.companyName} className="banner" />}
-            <h1 className="mt-4">{company.companyName} {company.logoUrl && <img src={company.logoUrl} alt={company.companyName} className="mx-2" />}</h1>
-            
+            <h1 className="mt-4">{company.companyName} {company.logoUrl && <img src={company.logoUrl} alt={company.companyName} className="mx-2 page-logo" />}</h1>
+
             <p>
               <button className="btn btn-primary my-3 font-weight-bold text-uppercase float-right" onClick={handleConnect} disabled={connected}> {connected ? "Connected" : "Connect"} </button>
               <a target="_blank" rel="noreferrer" href={company.websiteUrl}><button className="btn btn-warning my-2 mx-2 font-weight-bold text-uppercase">Visit our website</button></a>
@@ -90,7 +99,7 @@ function CompanyDetail() {
           </div>
           <div className="col-lg-10 my-4">
             {company.mainImageUrl && <img src={company.mainImageUrl} alt={company.companyName} className="banner" />}
-            <h1 className="mt-4">{company.companyName} {company.logoUrl && <img src={company.logoUrl} alt={company.companyName} className="mx-2" />}</h1>
+            <h1 className="mt-4">{company.companyName} {company.logoUrl && <img src={company.logoUrl} alt={company.companyName} className="mx-2 page-logo" />}</h1>
             <p>
               <a href="/login-user"><button className="btn btn-warning my-2 me-2 font-weight-bold text-uppercase float-right">Login to Connect</button></a>
               <a target="_blank" rel="noreferrer" href={company.websiteUrl}><button className="btn btn-warning my-2 mx-2 font-weight-bold text-uppercase">Visit our website</button></a>

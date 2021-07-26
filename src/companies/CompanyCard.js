@@ -15,7 +15,7 @@ import "./CompanyCard.css";
           <Link to={`/companies/${companyHandle}`}>
           {companyName} 
           </Link>
-          {logoUrl && <img src={logoUrl} alt={companyName} className="float-right mx-2 ml-5" />}
+          {logoUrl && <img src={logoUrl} alt={companyName} className="float-right ml-5" />}
         </h5>        
         <p>{state} | {numEmployees} employees</p>
        
