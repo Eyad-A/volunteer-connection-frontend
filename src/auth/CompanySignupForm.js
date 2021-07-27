@@ -47,10 +47,6 @@ function CompanySignupForm({ signupCompany }) {
     const { name, value, type } = evt.target;
     setFormData(data => ({ ...data, [name]: type === 'number' ? parseInt(value) : value }));
   }
-
-  // this.setState({
-  //   [e.target.name]: e.target.type === 'number' ? parseInt(e.target.value) : e.target.value
-  // });
   
 
   return (

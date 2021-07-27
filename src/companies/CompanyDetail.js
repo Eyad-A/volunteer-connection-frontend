@@ -34,13 +34,6 @@ function CompanyDetail() {
   }, [companyHandle]);
 
 
-  // React.useEffect(function updateConnectedStatus() {
-  //   if (currentUser.connections.includes(companyHandle)) {
-  //     setConnected(true);
-  //   }
-  // }, [currentUser.connections, companyHandle]);
-
-
   useEffect(function getCompanyDetail() {
     async function getCompany() {
       setCompany(await VolunteerApi.getCurrentCompany(companyHandle));

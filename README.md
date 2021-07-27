@@ -4,6 +4,7 @@ The frontend is built with React.
 The styling isdone with Boootstrap and custom CSS.
 
 [You can find the backend here](https://github.com/Eyad-A/volunteer-connection-backend) 
+[The project is deployed here](http://volunteer-connection.surge.sh)
 
 ## Testing
 You can run the tests locally by using the comand `npm run test`. This project uses Jest for testing.
