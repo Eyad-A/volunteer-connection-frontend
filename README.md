@@ -6,6 +6,12 @@ The styling isdone with Boootstrap and custom CSS.
 [You can find the backend here](https://github.com/Eyad-A/volunteer-connection-backend)  
 [The project is deployed here](http://volunteer-connection.surge.sh)  
 
+## Getting Started 
+
+1. Download or clone the repo
+2. run `npm install` to install the required packages
+3. run `npm run start` to start the application  
+
 ## Testing
 You can run the tests locally by using the comand `npm run test`. This project uses Jest for testing.
 
